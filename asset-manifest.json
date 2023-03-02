@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/static/js/main.32ec0f31.js",
-    "static/media/Ak.PNG": "/static/media/Ak.d43fc67910ec24112405.PNG",
-    "index.html": "/index.html",
-    "main.32ec0f31.js.map": "/static/js/main.32ec0f31.js.map"
+    "main.js": "/Ak-store/static/js/main.8ef21aaa.js",
+    "static/media/Ak.PNG": "/Ak-store/static/media/Ak.d43fc67910ec24112405.PNG",
+    "index.html": "/Ak-store/index.html",
+    "main.8ef21aaa.js.map": "/Ak-store/static/js/main.8ef21aaa.js.map"
   },
   "entrypoints": [
-    "static/js/main.32ec0f31.js"
+    "static/js/main.8ef21aaa.js"
   ]
 }
