@@ -36,6 +36,8 @@ const fetchcart = async ()=>{
 //   setProducts()
 
   // })
+
+
 const handleAddToCart = async(productId,quantity)=>{
   setCart(await commerce.cart.add(productId, quantity));
     
@@ -53,6 +55,7 @@ const removeitem = async (id) => {
   setCart(await commerce.cart.remove(id));
   fetchcart();
 }
+
   useEffect(()=>{
     fetchproducts();
     fetchcart();
@@ -87,7 +90,7 @@ const removeitem = async (id) => {
       path: "checkout",
       element: <div>
         <Navbar items ={cart.total_items}/>
-        <Checkout/>
+        <Checkout cart={cart} />
       </div>,
     },
   ]);

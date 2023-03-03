@@ -1,14 +1,33 @@
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardHeader, MDBCheckbox, MDBCol, MDBInput, MDBListGroup, MDBListGroupItem, MDBRow, MDBTextArea, MDBTypography } from 'mdb-react-ui-kit';
 import PaymentForm from './PaymentForm';
-import {InputLabel, Select, MenuItme, Buttons, Grid, Typography} from '@material-ui/core'
+import { useState, useEffect } from 'react';
+import {InputLabel, Select, MenuItem, Buttons, Grid, Typography} from '@material-ui/core'
 import {useForm, FormProvider } from 'react-hook-form';
 import FieldInputs from './FieldInputs';
-const AddressFrom = () => {
+import { commerce } from '../../lib/commerce';
+const AddressFrom = ({CheckoutToken}) => {
+  const [Shippingcountries, setShippingcountries] = useState([])
+  const [Shippingcountry, setShippingcountry] = useState('')
+  const [Shippingcities, setShippingcities] = useState([])
+  const [Shippingcity, setShippingcity] = useState('')
+  const [Shippingoptions, setShippingoptions] = useState([])
+  const [Shippingoption, setShippingoption] = useState('')
+  const methods = useForm();
+
+  const fetchcountries = async(checkoutTokenId)=>{
+      const {countries} = await commerce.services.localeListShippingCountries(checkoutTokenId);
+      console.log(countries);
+      setShippingcountries(countries);
+    }
+    useEffect(() => {;  
+    fetchcountries(CheckoutToken.iyd);
+    }, [])
+    
+
   return (
     <>
     <Typography variant="h6" gutterbottom >Shipping Address</Typography>
     <FormProvider >
-      <form onSubmit=''>
+      <form >
           <Grid container spacing={3}>
             <FieldInputs required name='firstname' label='First name' />
             <FieldInputs required name='lastname' label='Last name' />
@@ -16,7 +35,24 @@ const AddressFrom = () => {
             <FieldInputs required name='email' label='Email' />
             <FieldInputs required name='city' label='City' />
             <FieldInputs required name='zip' label='Zip / Postal Code' />
-
+            <Grid xs={12} sm={6}>
+              <InputLabel>Shipping Country</InputLabel>
+              <Select value={""} fullWidth onChange={""}>
+                <MenuItem key={""} value={""}>Select me</MenuItem>
+              </Select>
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <InputLabel>Shipping City</InputLabel>
+              <Select value={""} fullWidth onChange={""}>
+                <MenuItem key={""} value={""}>Select me</MenuItem>
+              </Select>
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <InputLabel>Shipping Options</InputLabel>
+              <Select value={""} fullWidth onChange={""}>
+                <MenuItem key={""} value={""}>Select me</MenuItem>
+              </Select>
+            </Grid>
           </Grid>
       </form>
 
