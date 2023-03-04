@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/Ak-store/static/js/main.8ef21aaa.js",
-    "static/media/Ak.PNG": "/Ak-store/static/media/Ak.d43fc67910ec24112405.PNG",
-    "index.html": "/Ak-store/index.html",
-    "main.8ef21aaa.js.map": "/Ak-store/static/js/main.8ef21aaa.js.map"
+    "main.js": "/Ecommerce_store/static/js/main.c4247732.js",
+    "static/media/Ak.PNG": "/Ecommerce_store/static/media/Ak.d43fc67910ec24112405.PNG",
+    "index.html": "/Ecommerce_store/index.html",
+    "main.c4247732.js.map": "/Ecommerce_store/static/js/main.c4247732.js.map"
   },
   "entrypoints": [
-    "static/js/main.8ef21aaa.js"
+    "static/js/main.c4247732.js"
   ]
 }
