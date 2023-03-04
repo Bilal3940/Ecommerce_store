@@ -4,42 +4,33 @@ import {InputLabel, Select, MenuItem, Buttons, Grid, Typography} from '@material
 import {useForm, FormProvider } from 'react-hook-form';
 import FieldInputs from './FieldInputs';
 import { commerce } from '../../lib/commerce';
-const AddressFrom = ({cart}) => {
+const AddressFrom = ({CheckoutToken}) => {
   const [Shippingcountries, setShippingcountries] = useState([])
   const [Shippingcountry, setShippingcountry] = useState('')
   const [Shippingcities, setShippingcities] = useState([])
   const [Shippingcity, setShippingcity] = useState('')
   const [Shippingoptions, setShippingoptions] = useState([])
   const [Shippingoption, setShippingoption] = useState('')
-  const [CheckoutToken, setCheckoutToken] = useState('');
+  
   const methods = useForm();
-  useEffect(()=>{
-  const generatetoken = async()=>{
-    try {
-      const token = await commerce.checkout.generateToken(cart.id, {type:'cart'});
-      console.log(token.id);
-      setCheckoutToken(token);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-    generatetoken()
-  },[])
+  
 
   const fetchcountries = async(CheckoutTokenId)=>{
-    try {
-      const {countries} = await commerce.services.localeListShippingCountries(CheckoutTokenId);
-      console.log(CheckoutTokenId);
-      console.log(countries);
+      const { countries } = await commerce.services.localeListCountries(CheckoutTokenId);
       setShippingcountries(countries);
-    } catch (error) {
-      console.log(error);
-    }
+      console.log(countries);
     }
     useEffect(() => {;  
     fetchcountries(CheckoutToken.id);
     }, [])
-    
+    const fetchcities = async(CheckoutTokenId)=>{
+      const { cities } = await commerce.services.localeListSubdivisions('AF');
+      setShippingcities(cities);
+      console.log(cities);
+    }
+    useEffect(() => {;  
+    fetchcities(CheckoutToken.id);
+    }, [])
 
   return (
     <>
