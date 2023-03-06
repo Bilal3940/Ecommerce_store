@@ -8,7 +8,9 @@ import PaymentForm from './PaymentForm';
 const steps =['Shipping Address','Payment details' ];
 const Checkout = ({cart}) => {
   const classes = useStyles();
+  const [activeStep, setactiveStep] = useState(0);
   const [CheckoutToken, setCheckoutToken] = useState(null);
+  const [ShippingData, setShippingData] = useState({});
   useEffect(()=>{
     const generatetoken = async()=>{
       try {
@@ -21,14 +23,20 @@ const Checkout = ({cart}) => {
     }
       generatetoken()
     },[])
+    const nextStep =()=> setactiveStep((preActiveStep )=>preActiveStep+1);
+    const previousStep =()=> setactiveStep((preActiveStep )=>preActiveStep-1);
+
+    const next =(data)=>{
+      setShippingData(data);
+      nextStep();
+    }
   const Confirmation =()=>{
     <div>
       confirmation
     </div>
   } 
-  const [activestep, setActivestep]= useState(0);
-  const Form =()=> activestep===0
-  ? <AddressFrom  cart={cart} CheckoutToken={CheckoutToken} />:<PaymentForm/>
+  const Form =()=> activeStep===0
+  ? <AddressFrom  cart={cart} next={next} CheckoutToken={CheckoutToken} />:<PaymentForm previousStep={previousStep}/>
 
   return (
     <>
@@ -36,14 +44,14 @@ const Checkout = ({cart}) => {
         <main className={classes.layout}>
           <paper className={classes.paper}>
               <Typography variant='h4' align='center '>Checkout</Typography>
-              <Stepper activeStep={0} className={classes.stepper}>
+              <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map((step)=>(
                 <Step key={step}>
                   <StepLabel>{step}</StepLabel>
                 </Step>
               ))}
               </Stepper>
-              {activestep===Step.length?<Confirmation/>:CheckoutToken&&<Form/>}
+              {activeStep===Step.length?<Confirmation/>:CheckoutToken&&<Form/>}
           </paper>
         </main>
     </>

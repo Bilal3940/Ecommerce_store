@@ -13,7 +13,7 @@ import FieldInputs from "./FieldInputs";
 import { cart } from "../cart/Cart";
 import { commerce } from "../../lib/commerce";
 import { Link } from "react-router-dom";
-const AddressFrom = ({ CheckoutToken }) => {
+const AddressFrom = ({ CheckoutToken,next }) => {
   const [Shippingcountries, setShippingcountries] = useState([]);
   const [Shippingcountry, setShippingcountry] = useState("");
   const [Shippingcities, setShippingcities] = useState([]);
@@ -41,8 +41,8 @@ const AddressFrom = ({ CheckoutToken }) => {
       <Typography variant="h6" gutterbottom>
         Shipping Address
       </Typography>
-      <FormProvider>
-        <form onSubmit={methods}>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit((data) =>next(data))}>
           <Grid container spacing={3}>
             <FieldInputs required name="firstname" label="First name" />
             <FieldInputs required name="lastname" label="Last name" />
@@ -55,12 +55,10 @@ const AddressFrom = ({ CheckoutToken }) => {
           </Grid>
           <br />
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <button color="primary" variant="outlined">
-              <Link  to="/cart">Back to Cart</Link>
+            <button style={{background:'#3f51b5', width:'6rem', height:'2rem',fontSize:'15px'}} variant="outlined">
+              <Link style={{textDecoration:'none'}} to="/cart">Back to Cart</Link>
             </button>
-            <button type="Submit" variant="contained">
-              Submit
-            </button>
+            <button style={{background:'#3f51b5', width:'6rem', height:'2rem',fontSize:'15px'}} type="Submit" variant="contained" color="primary">Submit</button>
           </div>
         </form>
       </FormProvider>
