@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react'
-import product from '../Products/Product/Product'
-import {paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from  '@material-ui/core'
+import {Paper,Stepper, Step, StepLabel, Typography} from  '@material-ui/core'
 import useStyles from './styles';
 import {commerce} from '../../lib/commerce';
 import AddressFrom from './AddressForm';
@@ -22,12 +21,13 @@ const Checkout = ({cart}) => {
       } 
     }
       generatetoken()
-    },[])
+    },[cart.id])
     const nextStep =()=> setactiveStep((preActiveStep )=>preActiveStep+1);
     const previousStep =()=> setactiveStep((preActiveStep )=>preActiveStep-1);
 
-    const next =([data])=>{
-      setShippingData([data]);
+    const next =(data)=>{
+      setShippingData(data);
+      console.log(data);
       nextStep();
     }
   const Confirmation =()=>{
@@ -42,7 +42,7 @@ const Checkout = ({cart}) => {
     <>
         <div className={classes.toolbar}/>
         <main className={classes.layout}>
-          <paper className={classes.paper}>
+          <Paper className={classes.paper}>
               <Typography variant='h4' align='center '>Checkout</Typography>
               <Stepper activeStep={activeStep} className={classes.stepper}>
               {steps.map((step)=>(
@@ -52,7 +52,7 @@ const Checkout = ({cart}) => {
               ))}
               </Stepper>
               {activeStep===Step.length?<Confirmation/>:CheckoutToken&&<Form/>}
-          </paper>
+          </Paper>
         </main>
     </>
   )

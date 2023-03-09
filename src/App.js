@@ -1,11 +1,7 @@
-
-import { ControlCameraOutlined } from '@material-ui/icons'
 import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
 } from "react-router-dom";
 import React,{useState, useEffect} from 'react'
 import Cart from './components/cart/Cart'
@@ -31,18 +27,10 @@ const fetchproducts = async ()=>{
 const fetchcart = async ()=>{
   setCart( await commerce.cart.retrieve());
 }
-// console.log(products);
-// const fetchmanproducts = async ()=>{
-//   setProducts()
-
-  // })
-
-
 const handleAddToCart = async(productId,quantity)=>{
   setCart(await commerce.cart.add(productId, quantity));
     
 }
-// console.log(cart);
 const handleUpdateCartQnt = async(productId,quantity)=>{
   setCart(await commerce.cart.update(productId, {quantity}));
 }
@@ -94,9 +82,9 @@ const removeitem = async (id) => {
       </div>,
     },
   ]);
-  
-  createRoot(
-    document.getElementById("root")).render(
+  const root = createRoot(
+    document.getElementById("root"))
+  root.render(
     <RouterProvider router={router} />
   );
 }

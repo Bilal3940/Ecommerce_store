@@ -30,7 +30,7 @@ const Navbar = ({ items, products }) => {
               />
             </Link>
           </Typography>
-          <Typography variant="h8" className={classes.nav}>
+          <Typography variant="h6" className={classes.nav}>
             {/* <IconButton gutterBottom className={classes.padd} component={Link} to='/mens'> Mens</IconButton> */}
             <Button component={Link} to='/' className={classes.padd}>All</Button>
             <Button component={Link} to='/mens' className={classes.padd}>Men</Button> 

@@ -5,9 +5,8 @@ const Review = ({CheckoutToken}) => {
   return (
     <>
     <Typography variant='h6' gutterbottom>Order Summary</Typography>
-    {CheckoutToken} 
+    <Typography variant='h6'>{CheckoutToken.id}</Typography>
     <List disablePadding>
-
     </List>
     </>
   )
