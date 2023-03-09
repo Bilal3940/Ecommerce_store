@@ -1,12 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from '@material-ui/core'
-const PaymentForm = ({previousStep}) => {
+import { Button, Typography, Divider } from '@material-ui/core'
+import {ELements, CardElementd, ELementsConsumer} from "@stripe/react-stripe-js";
+import { loadStripe } from '@stripe/stripe-js';
+import Review from './Review';
+const PaymentForm = ({previousStep, CheckoutToken}) => {
   return (
-    <div>
+    <>
       <h1>PAyment Form</h1>
-      <Button onClick={previousStep} >Pervious Step</Button>
-    </div>
+      <Review CheckoutToken={CheckoutToken} />
+    </>
   )
 }
 

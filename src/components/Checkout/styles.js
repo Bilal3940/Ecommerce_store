@@ -16,6 +16,24 @@ export default makeStyles((theme) => ({
       marginRight: 'auto',
     },
   },
+  emptyButton: {
+    minHeight:'50px',
+    minWidth: '150px',
+    color:'#fff',
+    fontSize:'18px',
+    textDecoration:'none',
+    borderRadius:'10px',
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: '5px',
+    },
+    [theme.breakpoints.up('xs')]: {
+      marginRight: '20px',
+    },
+    backgroundColor:'#3f51b5',
+  },
+  checkoutButton: {
+    minWidth: '150px',
+  },
   paper: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
@@ -36,10 +54,14 @@ export default makeStyles((theme) => ({
   buttons: {
     display: 'flex',
     justifyContent: 'flex-end',
+    
+    
   },
   button: {
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
+    
+    
   },
   divider: {
     margin: '20px 0',

@@ -8,11 +8,13 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
+import useStyles from "./styles";
 import { useForm, FormProvider } from "react-hook-form";
 import FieldInputs from "./FieldInputs";
 import { cart } from "../cart/Cart";
 import { commerce } from "../../lib/commerce";
 import { Link } from "react-router-dom";
+
 const AddressFrom = ({ CheckoutToken,next }) => {
   const [Shippingcountries, setShippingcountries] = useState([]);
   const [Shippingcountry, setShippingcountry] = useState("");
@@ -22,6 +24,8 @@ const AddressFrom = ({ CheckoutToken,next }) => {
   const [Shippingoption, setShippingoption] = useState("");
 
   const methods = useForm();
+  const classes = useStyles();
+
   // const countries = Object.entries(Shippingcountries).map(([code, name])=>({id:code, label:name}))
   // console.log(countries);
 
@@ -42,9 +46,9 @@ const AddressFrom = ({ CheckoutToken,next }) => {
         Shipping Address
       </Typography>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit((data) =>next(data))}>
+        <form onSubmit={methods.handleSubmit((data) =>next([data]))}>
           <Grid container spacing={3}>
-            <FieldInputs required name="firstname" label="First name" />
+            <FieldInputs  required name="firstname" label="First name" />
             <FieldInputs required name="lastname" label="Last name" />
             <FieldInputs required name="address" label="Addess" />
             <FieldInputs required name="email" label="Email" />
@@ -55,12 +59,13 @@ const AddressFrom = ({ CheckoutToken,next }) => {
           </Grid>
           <br />
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <button style={{background:'#3f51b5', width:'6rem', height:'2rem',fontSize:'15px'}} variant="outlined">
-              <Link style={{textDecoration:'none'}} to="/cart">Back to Cart</Link>
+            <button className={classes.emptyButton} variant="outlined">
+              <Link style={{textDecoration:'none', color:'#fff'}} to="/cart">Back to Cart</Link>
             </button>
-            <button style={{background:'#3f51b5', width:'6rem', height:'2rem',fontSize:'15px'}} type="Submit" variant="contained" color="primary">Submit</button>
+            <button className={classes.emptyButton} type="Submit" variant="outlined">Next</button>
           </div>
         </form>
+       
       </FormProvider>
     </>
   );
