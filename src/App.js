@@ -17,6 +17,8 @@ const [products, setProducts ] = useState([]);
 const [cart, setCart] = useState({});
 const [del, setDel] = useState([]);
 const [delitem, setDelitem] = useState([]);
+const [Order, setorder] = useState({})
+const [errorMessage, seterrorMessage] = useState('');
 const fetchproducts = async ()=>{
   const {data} = await commerce.products.list();
   setProducts(data);
@@ -42,6 +44,21 @@ const Emptycart = async ()=>{
 const removeitem = async (id) => {
   setCart(await commerce.cart.remove(id));
   fetchcart();
+}
+const RefreshCart =async()=>{
+  const newCart = await commerce.cart.refresh();
+  setCart(newCart);
+}
+const handleCaptureCheckout = async(CheckoutTokenId, newOrder)=>{
+  try {
+    const incomingOrder = await commerce.checkout.capture(CheckoutTokenId, newOrder)
+    setorder(incomingOrder)
+    RefreshCart();
+  } catch (error) {
+    seterrorMessage(error.data.error.message)
+    
+  }
+
 }
 
   useEffect(()=>{
@@ -78,7 +95,7 @@ const removeitem = async (id) => {
       path: "checkout",
       element: <div>
         <Navbar items ={cart.total_items}/>
-        <Checkout cart={cart} />
+        <Checkout Order={Order} OnCaptureCheckout={handleCaptureCheckout} error={errorMessage} cart={cart} />
       </div>,
     },
   ]);

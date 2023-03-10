@@ -5,7 +5,7 @@ import {commerce} from '../../lib/commerce';
 import AddressFrom from './AddressForm';
 import PaymentForm from './PaymentForm';
 const steps =['Shipping Address','Payment details' ];
-const Checkout = ({cart}) => {
+const Checkout = ({cart,error, Order, OnCaptureCheckout}) => {
   const classes = useStyles();
   const [activeStep, setactiveStep] = useState(0);
   const [CheckoutToken, setCheckoutToken] = useState(null);
@@ -36,7 +36,7 @@ const Checkout = ({cart}) => {
     </div>
   } 
   const Form =()=> activeStep===0
-  ? <AddressFrom  CheckoutToken={CheckoutToken} cart={cart} next={next} />:<PaymentForm previousStep={previousStep} CheckoutToken={CheckoutToken} />
+  ? <AddressFrom  CheckoutToken={CheckoutToken} cart={cart} next={next} />:<PaymentForm OnCaptureCheckout={OnCaptureCheckout} nextStep={nextStep} ShippingData={ShippingData} previousStep={previousStep} CheckoutToken={CheckoutToken} />
 
   return (
     <>

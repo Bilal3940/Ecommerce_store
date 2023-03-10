@@ -23,7 +23,7 @@ const AddressFrom = ({next }) => {
             <FieldInputs name="address" label="Addess" />
             <FieldInputs name="email" label="Email" />
             <FieldInputs name="city" label="City" />
-            <FieldInputs name="Province" label="Province" />
+            <FieldInputs name="province" label="Province" />
             <FieldInputs name="country" label="Country" />
             <FieldInputs name="zip" label="Zip" />
           </Grid>
